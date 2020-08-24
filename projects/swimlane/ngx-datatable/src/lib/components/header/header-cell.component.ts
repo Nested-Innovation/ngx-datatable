@@ -17,7 +17,7 @@ import { SortDirection } from '../../types/sort-direction.type';
 @Component({
   selector: 'datatable-header-cell',
   template: `
-    <div class="datatable-header-cell-template-wrap">
+    <td class="datatable-header-cell-template-wrap">
       <ng-template
         *ngIf="isTarget"
         [ngTemplateOutlet]="targetMarkerTemplate"
@@ -37,7 +37,7 @@ import { SortDirection } from '../../types/sort-direction.type';
       >
       </ng-template>
       <span (click)="onSort()" [class]="sortClass"> </span>
-    </div>
+    </td>
   `,
   host: {
     class: 'datatable-header-cell'
