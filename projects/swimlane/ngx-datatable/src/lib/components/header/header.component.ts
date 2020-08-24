@@ -17,7 +17,8 @@ import { translateXY } from '../../utils/translate';
 @Component({
   selector: 'datatable-header',
   template: `
-    <div
+  <thead>
+    <tr
       orderable
       (reorder)="onColumnReordered($event)"
       (targetChanged)="onTargetChanged($event)"
@@ -62,7 +63,8 @@ import { translateXY } from '../../utils/translate';
         >
         </datatable-header-cell>
       </div>
-    </div>
+    </tr>
+  </thead>
   `,
   host: {
     class: 'datatable-header'

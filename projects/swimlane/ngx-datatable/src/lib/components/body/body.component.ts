@@ -39,6 +39,7 @@ import { translateXY } from '../../utils/translate';
         [scrollWidth]="columnGroupWidths?.total"
         (scroll)="onBodyScroll($event)"
       >
+        <tbody>
         <datatable-summary-row
           *ngIf="summaryRow && summaryPosition === 'top'"
           [rowHeight]="summaryHeight"
@@ -62,6 +63,7 @@ import { translateXY } from '../../utils/translate';
           [rowIndex]="getRowIndex(group && group[i])"
           (rowContextmenu)="rowContextmenu.emit($event)"
         >
+          <tr>
           <datatable-body-row
             *ngIf="!groupedRows; else groupedRowsTemplate"
             tabindex="-1"
@@ -98,6 +100,7 @@ import { translateXY } from '../../utils/translate';
             >
             </datatable-body-row>
           </ng-template>
+          </tr>
         </datatable-row-wrapper>
         <datatable-summary-row
           *ngIf="summaryRow && summaryPosition === 'bottom'"
@@ -109,6 +112,7 @@ import { translateXY } from '../../utils/translate';
           [columns]="columns"
         >
         </datatable-summary-row>
+        </tbody>
       </datatable-scroller>
       <div class="empty-row" *ngIf="!rows?.length && !loadingIndicator" [innerHTML]="emptyMessage"></div>
     </datatable-selection>
