@@ -43,7 +43,7 @@ import { ScrollbarHelper } from '../services/scrollbar-helper.service';
 import { ColumnChangesService } from '../services/column-changes.service';
 import { DimensionsHelper } from '../services/dimensions-helper.service';
 import { throttleable } from '../utils/throttle';
-import { forceFillColumnWidths, adjustColumnWidths } from '../utils/math';
+import { forceFillColumnWidths, adjustColumnWidths, comboColumnWidths } from '../utils/math';
 import { sortRows } from '../utils/sort';
 
 @Component({
@@ -181,7 +181,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
 
   /**
    * Type of column width distribution formula.
-   * Example: flex, force, standard
+   * Example: flex, force, standard, combo
    */
   @Input() columnMode: ColumnMode | keyof typeof ColumnMode = ColumnMode.standard;
 
@@ -835,6 +835,8 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
       forceFillColumnWidths(columns, width, forceIdx, allowBleed);
     } else if (this.columnMode === ColumnMode.flex) {
       adjustColumnWidths(columns, width);
+    } else if (this.columnMode === ColumnMode.combo) {
+      comboColumnWidths(columns, width, forceIdx, allowBleed);
     }
 
     return columns;

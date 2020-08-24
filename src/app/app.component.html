@@ -172,6 +172,7 @@
           <li><a href="#force" (click)="state = 'force'">Force</a></li>
           <li><a href="#pinning" (click)="state = 'pinning'">Pinning</a></li>
           <li><a href="#reorder" (click)="state = 'reorder'">Reorder</a></li>
+          <li><a href="#combo" (click)="state = 'combo'">Combo</a></li>
         </ul>
       </li>
       <li>
@@ -257,6 +258,7 @@
     <column-force-demo *ngIf="state === 'force'"></column-force-demo>
     <column-pinning-demo *ngIf="state === 'pinning'"></column-pinning-demo>
     <column-reorder-demo *ngIf="state === 'reorder'"></column-reorder-demo>
+    <column-combo-demo *ngIf="state === 'combo'"></column-combo-demo>
 
     <!-- Summary row -->
     <summary-row-simple-demo *ngIf="state === 'simple-summary'"></summary-row-simple-demo>
