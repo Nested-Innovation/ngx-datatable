@@ -65,6 +65,7 @@ import { ColumnForceComponent } from './columns/column-force.component';
 import { ColumnFlexComponent } from './columns/column-flex.component';
 import { ColumnPinningComponent } from './columns/pinning.component';
 import { ColumnReorderComponent } from './columns/column-reorder.component';
+import { ColumnComboComponent } from './columns/column-combo.component';
 
 // -- Summary row
 import { SummaryRowSimpleComponent } from './summary/summary-row-simple.component';
@@ -105,6 +106,7 @@ import { CommonModule } from '@angular/common';
     ColumnForceComponent,
     ColumnPinningComponent,
     ColumnReorderComponent,
+    ColumnComboComponent,
     FilterBarComponent,
     VirtualPagingComponent,
     DarkThemeComponent,

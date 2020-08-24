@@ -143,6 +143,22 @@ export function forceFillColumnWidths(
   } while (remainingWidth > remainingWidthLimit && columnsToResize.length !== 0);
 }
 
+export function comboColumnWidths(
+  allColumns: any[],
+  expectedWidth: number,
+  startIdx: number,
+  allowBleed: boolean,
+  defaultColWidth: number = 300
+) {
+  const totalFlexGrow = getTotalFlexGrow(allColumns);
+  if (totalFlexGrow) {
+    const contentWidth = getComboContentWidth(allColumns);
+    adjustColumnWidths(allColumns, allowBleed ? Math.max(contentWidth, expectedWidth) : expectedWidth);
+  } else {
+    forceFillColumnWidths(allColumns, expectedWidth, startIdx, allowBleed, defaultColWidth);
+  }
+}
+
 /**
  * Remove the processed columns from the current active columns.
  */
@@ -161,6 +177,20 @@ function getContentWidth(allColumns: any, defaultColWidth: number = 300): number
 
   for (const column of allColumns) {
     contentWidth += column.width || defaultColWidth;
+  }
+
+  return contentWidth;
+}
+
+function getComboContentWidth(allColumns: any, defaultColWidth: number = 300): number {
+  let contentWidth = 0;
+
+  for (const column of allColumns) {
+    if (column.flexGrow) {
+      contentWidth += 150;
+    } else {
+      contentWidth += column.width || defaultColWidth;
+    }
   }
 
   return contentWidth;
