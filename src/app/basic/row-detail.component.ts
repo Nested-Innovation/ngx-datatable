@@ -31,9 +31,10 @@ import { ColumnMode } from 'projects/swimlane/ngx-datatable/src/public-api';
         [scrollbarV]="true"
         [rows]="rows"
         (page)="onPage($event)"
+        [rowDetailExpansionDefault]="true"
       >
         <!-- Row Detail Template -->
-        <ngx-datatable-row-detail rowHeight="100" #myDetailRow (toggle)="onDetailToggle($event)">
+        <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
             <div style="padding-left:35px;">
               <div><strong>Address</strong></div>

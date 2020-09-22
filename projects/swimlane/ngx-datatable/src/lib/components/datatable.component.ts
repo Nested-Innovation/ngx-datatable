@@ -368,6 +368,13 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   @Input() groupExpansionDefault: boolean = false;
 
   /**
+   * A boolean you can use to set the detault behaviour of rows and row detail
+   * whether they will start expanded or not. If ommited the default is NOT expanded.
+   *
+   */
+  @Input() rowDetailExpansionDefault: boolean = false;
+
+  /**
    * Property to which you can use for custom tracking of rows.
    * Example: 'name'
    */

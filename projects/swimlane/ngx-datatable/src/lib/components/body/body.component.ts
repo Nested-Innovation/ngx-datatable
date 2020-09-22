@@ -142,6 +142,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   @Input() rowClass: any;
   @Input() groupedRows: any;
   @Input() groupExpansionDefault: boolean;
+  @Input() rowDetailExpansionDefault: boolean;
   @Input() innerWidth: number;
   @Input() groupRowsBy: string;
   @Input() virtualization: boolean;
@@ -161,6 +162,11 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   @Input() set rows(val: any[]) {
     this._rows = val;
     this.rowExpansions.clear();
+    if (this.rowDetailExpansionDefault) {
+      for (const row of val) {
+        this.rowExpansions.set(row, 1);
+      }
+    }
     this.recalcLayout();
   }
 
