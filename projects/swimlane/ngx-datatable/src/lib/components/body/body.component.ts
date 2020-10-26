@@ -40,78 +40,78 @@ import { translateXY } from '../../utils/translate';
         (scroll)="onBodyScroll($event)"
       >
         <tbody>
-        <datatable-summary-row
-          *ngIf="summaryRow && summaryPosition === 'top'"
-          [rowHeight]="summaryHeight"
-          [offsetX]="offsetX"
-          [innerWidth]="innerWidth"
-          [rows]="rows"
-          [columns]="columns"
-        >
-        </datatable-summary-row>
-        <datatable-row-wrapper
-          [groupedRows]="groupedRows"
-          *ngFor="let group of temp; let i = index; trackBy: rowTrackingFn"
-          [innerWidth]="innerWidth"
-          [ngStyle]="getRowsStyles(group)"
-          [rowDetail]="rowDetail"
-          [groupHeader]="groupHeader"
-          [offsetX]="offsetX"
-          [detailRowHeight]="getDetailRowHeight(group && group[i], i)"
-          [row]="group"
-          [expanded]="getRowExpanded(group)"
-          [rowIndex]="getRowIndex(group && group[i])"
-          (rowContextmenu)="rowContextmenu.emit($event)"
-        >
-          <tr>
-          <datatable-body-row
-            *ngIf="!groupedRows; else groupedRowsTemplate"
-            tabindex="-1"
-            [isSelected]="selector.getRowSelected(group)"
-            [innerWidth]="innerWidth"
+          <datatable-summary-row
+            *ngIf="summaryRow && summaryPosition === 'top'"
+            [rowHeight]="summaryHeight"
             [offsetX]="offsetX"
+            [innerWidth]="innerWidth"
+            [rows]="rows"
             [columns]="columns"
-            [rowHeight]="getRowHeight(group)"
-            [row]="group"
-            [rowIndex]="getRowIndex(group)"
-            [expanded]="getRowExpanded(group)"
-            [rowClass]="rowClass"
-            [displayCheck]="displayCheck"
-            [treeStatus]="group && group.treeStatus"
-            (treeAction)="onTreeAction(group)"
-            (activate)="selector.onActivate($event, indexes.first + i)"
           >
-          </datatable-body-row>
-          <ng-template #groupedRowsTemplate>
-            <datatable-body-row
-              *ngFor="let row of group.value; let i = index; trackBy: rowTrackingFn"
-              tabindex="-1"
-              [isSelected]="selector.getRowSelected(row)"
-              [innerWidth]="innerWidth"
-              [offsetX]="offsetX"
-              [columns]="columns"
-              [rowHeight]="getRowHeight(row)"
-              [row]="row"
-              [group]="group.value"
-              [rowIndex]="getRowIndex(row)"
-              [expanded]="getRowExpanded(row)"
-              [rowClass]="rowClass"
-              (activate)="selector.onActivate($event, i)"
-            >
-            </datatable-body-row>
-          </ng-template>
-          </tr>
-        </datatable-row-wrapper>
-        <datatable-summary-row
-          *ngIf="summaryRow && summaryPosition === 'bottom'"
-          [ngStyle]="getBottomSummaryRowStyles()"
-          [rowHeight]="summaryHeight"
-          [offsetX]="offsetX"
-          [innerWidth]="innerWidth"
-          [rows]="rows"
-          [columns]="columns"
-        >
-        </datatable-summary-row>
+          </datatable-summary-row>
+          <datatable-row-wrapper
+            [groupedRows]="groupedRows"
+            *ngFor="let group of temp; let i = index; trackBy: rowTrackingFn"
+            [innerWidth]="innerWidth"
+            [ngStyle]="getRowsStyles(group)"
+            [rowDetail]="rowDetail"
+            [groupHeader]="groupHeader"
+            [offsetX]="offsetX"
+            [detailRowHeight]="getDetailRowHeight(group && group[i], i)"
+            [row]="group"
+            [expanded]="getRowExpanded(group)"
+            [rowIndex]="getRowIndex(group && group[i])"
+            (rowContextmenu)="rowContextmenu.emit($event)"
+          >
+            <tr>
+              <datatable-body-row
+                *ngIf="!groupedRows; else groupedRowsTemplate"
+                tabindex="-1"
+                [isSelected]="selector.getRowSelected(group)"
+                [innerWidth]="innerWidth"
+                [offsetX]="offsetX"
+                [columns]="columns"
+                [rowHeight]="getRowHeight(group)"
+                [row]="group"
+                [rowIndex]="getRowIndex(group)"
+                [expanded]="getRowExpanded(group)"
+                [rowClass]="rowClass"
+                [displayCheck]="displayCheck"
+                [treeStatus]="group && group.treeStatus"
+                (treeAction)="onTreeAction(group)"
+                (activate)="selector.onActivate($event, indexes.first + i)"
+              >
+              </datatable-body-row>
+              <ng-template #groupedRowsTemplate>
+                <datatable-body-row
+                  *ngFor="let row of group.value; let i = index; trackBy: rowTrackingFn"
+                  tabindex="-1"
+                  [isSelected]="selector.getRowSelected(row)"
+                  [innerWidth]="innerWidth"
+                  [offsetX]="offsetX"
+                  [columns]="columns"
+                  [rowHeight]="getRowHeight(row)"
+                  [row]="row"
+                  [group]="group.value"
+                  [rowIndex]="getRowIndex(row)"
+                  [expanded]="getRowExpanded(row)"
+                  [rowClass]="rowClass"
+                  (activate)="selector.onActivate($event, i)"
+                >
+                </datatable-body-row>
+              </ng-template>
+            </tr>
+          </datatable-row-wrapper>
+          <datatable-summary-row
+            *ngIf="summaryRow && summaryPosition === 'bottom'"
+            [ngStyle]="getBottomSummaryRowStyles()"
+            [rowHeight]="summaryHeight"
+            [offsetX]="offsetX"
+            [innerWidth]="innerWidth"
+            [rows]="rows"
+            [columns]="columns"
+          >
+          </datatable-summary-row>
         </tbody>
       </datatable-scroller>
       <div class="empty-row" *ngIf="!rows?.length && !loadingIndicator" [innerHTML]="emptyMessage"></div>
@@ -141,6 +141,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   @Input() rowClass: any;
   @Input() groupedRows: any;
   @Input() groupExpansionDefault: boolean;
+  @Input() rowDetailExpansionDefault: boolean;
   @Input() innerWidth: number;
   @Input() groupRowsBy: string;
   @Input() virtualization: boolean;
@@ -159,6 +160,12 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
 
   @Input() set rows(val: any[]) {
     this._rows = val;
+    if (this.rowDetailExpansionDefault) {
+      this.rowExpansions = [];
+      for (const row of val) {
+        this.rowExpansions.push(row);
+      }
+    }
     this.recalcLayout();
   }
 
