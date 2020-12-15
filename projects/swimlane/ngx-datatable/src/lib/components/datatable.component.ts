@@ -1009,6 +1009,11 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
         c.$$oldWidth = newValue;
       }
 
+      // switch column from flex to width in combo mode
+      if (this.columnMode === ColumnMode.combo) {
+        c.flexGrow = undefined;
+      }
+
       return c;
     });
 
