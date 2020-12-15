@@ -54,7 +54,8 @@ import { sortRows } from '../utils/sort';
   styleUrls: ['./datatable.component.scss'],
   host: {
     class: 'ngx-datatable'
-  }
+  },
+  providers: [ColumnChangesService]
 })
 export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   /**

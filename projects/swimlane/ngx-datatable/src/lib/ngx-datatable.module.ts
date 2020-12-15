@@ -2,7 +2,6 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScrollbarHelper } from './services/scrollbar-helper.service';
 import { DimensionsHelper } from './services/dimensions-helper.service';
-import { ColumnChangesService } from './services/column-changes.service';
 import { DataTableFooterTemplateDirective } from './components/footer/footer-template.directive';
 import { VisibilityDirective } from './directives/visibility.directive';
 import { DraggableDirective } from './directives/draggable.directive';
@@ -34,7 +33,7 @@ import { DataTableSummaryRowComponent } from './components/body/summary/summary-
 
 @NgModule({
   imports: [CommonModule],
-  providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService],
+  providers: [ScrollbarHelper, DimensionsHelper],
   declarations: [
     DataTableFooterTemplateDirective,
     VisibilityDirective,
