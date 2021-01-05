@@ -199,6 +199,10 @@ Default value: `"single"`
 
 A property on the row object that uniquely identifies the row. Example: `"name"`
 
+## `trackByFn`
+
+A function on the row object that uniquely identifies the row. Example: `(index, row) => row.name`
+
 ## `rowClass`
 
 Function used to populate a row's CSS classes. The function will take a row and

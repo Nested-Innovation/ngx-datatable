@@ -138,6 +138,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   @Input() selectCheck: any;
   @Input() displayCheck: any;
   @Input() trackByProp: string;
+  @Input() trackByFn: (index: number, item: any) => any;
   @Input() rowClass: any;
   @Input() groupedRows: any;
   @Input() groupExpansionDefault: boolean;
@@ -281,7 +282,9 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
     // declare fn here so we can get access to the `this` property
     this.rowTrackingFn = (index: number, row: any): any => {
       const idx = this.getRowIndex(row);
-      if (this.trackByProp) {
+      if (this.trackByFn) {
+        return this.trackByFn(idx, row);
+      } else if (this.trackByProp) {
         return row[this.trackByProp];
       } else {
         return idx;

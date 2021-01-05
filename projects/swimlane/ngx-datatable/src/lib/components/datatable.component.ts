@@ -382,6 +382,12 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   @Input() trackByProp: string;
 
   /**
+   * Function to which you can use for custom tracking of rows.
+   * Example: (inex, row) => row.name
+   */
+  @Input() trackByFn: (index: number, item: any) => any;
+
+  /**
    * Property to which you can use for determining select all
    * rows on current page or not.
    *
