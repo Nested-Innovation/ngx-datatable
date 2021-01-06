@@ -67,6 +67,10 @@
     </datatable-body>
     <datatable-footer
       *ngIf="footerHeight"
+      [scrollbarH]="scrollbarH"
+      [innerWidth]="_innerWidth"
+      [offsetX]="_offsetX | async"
+      [columns]="_internalColumns"
       [rowCount]="rowCount"
       [pageSize]="pageSize"
       [offset]="offset"

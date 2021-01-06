@@ -33,12 +33,30 @@ import { ColumnMode } from 'projects/swimlane/ngx-datatable/src/public-api';
             let-selectedCount="selectedCount"
             let-curPage="curPage"
             let-offset="offset"
+            let-_columnsByPin="_columnsByPin"
+            let-_styleByGroup="_styleByGroup"
           >
-            <div style="padding: 5px 10px">
+            <tr>
+              <div
+                *ngFor="let colGroup of _columnsByPin; trackBy: trackByGroups"
+                [class]="'datatable-row-' + colGroup.type"
+                [ngStyle]="_styleByGroup[colGroup.type]"
+              >
+                <td
+                  *ngFor="let column of colGroup.columns; trackBy: columnTrackingFn"
+                  [style.minWidth.px]="column.minWidth"
+                  [style.maxWidth.px]="column.maxWidth"
+                  [style.width.px]="column.width"
+                >
+                  1
+                </td>
+              </div>
+            </tr>
+            <!-- <div style="padding: 5px 10px">
               <div><strong>Summary</strong>: Gender: Female</div>
               <hr style="width:100%" />
               <div>Rows: {{ rowCount }} | Size: {{ pageSize }} | Current: {{ curPage }} | Offset: {{ offset }}</div>
-            </div>
+            </div> -->
           </ng-template>
         </ngx-datatable-footer>
       </ngx-datatable>
@@ -67,5 +85,13 @@ export class FooterDemoComponent {
     };
 
     req.send();
+  }
+
+  trackByGroups(index: number, colGroup: any): any {
+    return colGroup.type;
+  }
+
+  columnTrackingFn(index: number, column: any): any {
+    return column.$$id;
   }
 }
