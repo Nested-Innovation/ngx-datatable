@@ -212,7 +212,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   }
 
   @Input()
-  @HostBinding('style.height')
+  @HostBinding('style.max-height')
   set bodyHeight(val) {
     if (this.scrollbarV) {
       this._bodyHeight = val + 'px';
