@@ -465,7 +465,12 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    * type indicates whether the header or the body was clicked.
    * content contains either the column or the row that was clicked.
    */
-  @Output() tableContextmenu = new EventEmitter<{ event: MouseEvent; type: ContextmenuType; content: any }>(false);
+  @Output() tableContextmenu = new EventEmitter<{
+    event: MouseEvent;
+    type: ContextmenuType;
+    content: any;
+    index: number;
+  }>(false);
 
   /**
    * A row was expanded ot collapsed for tree
@@ -984,14 +989,24 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    * The header triggered a contextmenu event.
    */
   onColumnContextmenu({ event, column }: any): void {
-    this.tableContextmenu.emit({ event, type: ContextmenuType.header, content: column });
+    this.tableContextmenu.emit({
+      event,
+      type: ContextmenuType.header,
+      content: column,
+      index: this._internalColumns.indexOf(column)
+    });
   }
 
   /**
    * The body triggered a contextmenu event.
    */
   onRowContextmenu({ event, row }: any): void {
-    this.tableContextmenu.emit({ event, type: ContextmenuType.body, content: row });
+    this.tableContextmenu.emit({
+      event,
+      type: ContextmenuType.body,
+      content: row,
+      index: this._internalRows.indexOf(row)
+    });
   }
 
   /**
