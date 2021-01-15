@@ -25,6 +25,7 @@
     >
     </datatable-header>
     <datatable-body
+      [rowDraggable]="rowDraggable"
       [groupRowsBy]="groupRowsBy"
       [groupedRows]="groupedRows"
       [rows]="_internalRows"
@@ -63,6 +64,7 @@
       (select)="onBodySelect($event)"
       (scroll)="onBodyScroll($event)"
       (treeAction)="onTreeAction($event)"
+      (rowDrag)="onRowDrag($event)"
     >
     </datatable-body>
     <datatable-footer
