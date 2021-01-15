@@ -74,6 +74,8 @@ import { SummaryRowServerPagingComponent } from './summary/summary-row-server-pa
 import { SummaryRowInlineHtmlComponent } from './summary/summary-row-inline-html.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
+import { DragBasicComponent } from './draggable/drag-basic/drag-basic.component';
+import { DragGroupingComponent } from './draggable/drag-grouping/drag-grouping.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +130,9 @@ import { CommonModule } from '@angular/common';
     SummaryRowSimpleComponent,
     SummaryRowCustomTemplateComponent,
     SummaryRowServerPagingComponent,
-    SummaryRowInlineHtmlComponent
+    SummaryRowInlineHtmlComponent,
+    DragBasicComponent,
+    DragGroupingComponent
   ],
   imports: [
     CommonModule,

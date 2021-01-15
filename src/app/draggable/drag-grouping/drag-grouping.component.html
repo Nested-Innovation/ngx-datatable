@@ -1,0 +1,28 @@
+<ngx-datatable
+  [rowDraggable]="true"
+  class="material expandable"
+  [rows]="dataSource"
+  groupRowsBy="age"
+  [groupExpansionDefault]="true"
+  [columnMode]="ColumnMode.force"
+  [headerHeight]="40"
+  [rowHeight]="40"
+  [scrollbarH]="true"
+  (rowDrag)="onRowDrag($event)"
+>
+  <!-- Group Header Template -->
+  <ngx-datatable-group-header [rowHeight]="50">
+    <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
+      <div style="padding-left: 5px;">
+        <b>Age: {{ group.value[0].age }}</b>
+      </div>
+    </ng-template>
+  </ngx-datatable-group-header>
+
+  <!-- Row Column Template -->
+  <ngx-datatable-column name="Source" prop="source"></ngx-datatable-column>
+  <ngx-datatable-column name="Name" prop="name"></ngx-datatable-column>
+  <ngx-datatable-column name="Gender" prop="gender"></ngx-datatable-column>
+  <ngx-datatable-column name="Age" prop="age"></ngx-datatable-column>
+  <ngx-datatable-column name="Comment" prop="comment"> </ngx-datatable-column>
+</ngx-datatable>

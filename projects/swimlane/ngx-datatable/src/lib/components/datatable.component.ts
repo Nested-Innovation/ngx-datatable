@@ -58,6 +58,7 @@ import { sortRows } from '../utils/sort';
   providers: [ColumnChangesService]
 })
 export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
+  @Input() rowDraggable: boolean;
   /**
    * Template for the target marker of drag target columns.
    */
@@ -91,6 +92,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
     if (this._rows && this._groupRowsBy) {
       // If a column has been specified in _groupRowsBy created a new array with the data grouped by that row
       this.groupedRows = this.groupArrayBy(this._rows, this._groupRowsBy);
+      console.log(this.groupedRows);
     }
 
     this.cd.markForCheck();
@@ -477,6 +479,8 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    */
   @Output() treeAction: EventEmitter<any> = new EventEmitter();
 
+  @Output() rowDrag = new EventEmitter<any>();
+
   /**
    * CSS class applied if the header height if fixed height.
    */
@@ -722,6 +726,10 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   ngAfterContentInit() {
     this.columnTemplates.changes.subscribe(v => this.translateColumns(v));
     this.listenForColumnInputChanges();
+  }
+
+  onRowDrag(event) {
+    this.rowDrag.emit(event);
   }
 
   /**

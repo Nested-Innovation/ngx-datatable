@@ -6,7 +6,8 @@
     "@angular/common": "^10.0.0",
     "@angular/core": "^10.0.0",
     "@angular/platform-browser": "^10.0.0",
-    "rxjs": "^6.5.5"
+    "rxjs": "^6.5.5",
+    "@angular/cdk": "^11.0.4"
   },
   "dependencies": {
     "tslib": "^2.0.0"
