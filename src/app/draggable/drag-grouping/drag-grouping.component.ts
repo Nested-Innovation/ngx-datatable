@@ -19,7 +19,7 @@ export class DragGroupingComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onRowDrag(event) {
+  onRowDrag(event: any) {
     const {
       item: { data },
       previousIndex,
