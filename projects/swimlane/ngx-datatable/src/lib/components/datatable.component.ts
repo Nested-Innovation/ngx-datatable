@@ -92,7 +92,6 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
     if (this._rows && this._groupRowsBy) {
       // If a column has been specified in _groupRowsBy created a new array with the data grouped by that row
       this.groupedRows = this.groupArrayBy(this._rows, this._groupRowsBy);
-      console.log(this.groupedRows);
     }
 
     this.cd.markForCheck();

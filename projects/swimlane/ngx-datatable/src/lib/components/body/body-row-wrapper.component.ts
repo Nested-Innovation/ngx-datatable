@@ -49,7 +49,11 @@ export class DataTableRowWrapperComponent implements DoCheck {
   @Input() offsetX: number;
   @Input() detailRowHeight: any;
   @Input() row: any;
-  @Input() columns: any[];
+  @Input() set columns(val: any[]) {
+    this.rowContext.columns = val;
+    this.groupContext.columns = val;
+    this.cd.markForCheck();
+  }
   @Input() groupedRows: any;
   @Output() rowContextmenu = new EventEmitter<{ event: MouseEvent; row: any }>(false);
 
