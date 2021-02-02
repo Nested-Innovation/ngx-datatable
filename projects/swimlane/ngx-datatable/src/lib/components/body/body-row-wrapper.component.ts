@@ -49,6 +49,7 @@ export class DataTableRowWrapperComponent implements DoCheck {
   @Input() offsetX: number;
   @Input() detailRowHeight: any;
   @Input() row: any;
+  @Input() columns: any[];
   @Input() groupedRows: any;
   @Output() rowContextmenu = new EventEmitter<{ event: MouseEvent; row: any }>(false);
 
@@ -76,12 +77,14 @@ export class DataTableRowWrapperComponent implements DoCheck {
 
   groupContext: any = {
     group: this.row,
+    columns: this.columns,
     expanded: this.expanded,
     rowIndex: this.rowIndex
   };
 
   rowContext: any = {
     row: this.row,
+    columns: this.columns,
     expanded: this.expanded,
     rowIndex: this.rowIndex
   };
