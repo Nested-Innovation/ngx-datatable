@@ -43,7 +43,6 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   @Input() trackByProp: string;
   @Input() trackByFn: (index: number, item: any) => any;
   @Input() rowClass: any;
-  @Input() groupedRows: any;
   @Input() groupExpansionDefault: boolean;
   @Input() rowDetailExpansionDefault: boolean;
   @Input() innerWidth: number;
@@ -75,6 +74,20 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
 
   get rows(): any[] {
     return this._rows;
+  }
+
+  @Input() set groupedRows(val: any[]) {
+    this._groupedRows = val;
+    if (this.groupExpansionDefault) {
+      this.rowExpansions = [];
+      for (const row of val) {
+        this.rowExpansions.push(row);
+      }
+    }
+  }
+
+  get groupedRows(): any[] {
+    return this._groupedRows;
   }
 
   @Input() set columns(val: any[]) {
@@ -173,6 +186,7 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
   rowExpansions: any[] = [];
 
   _rows: any[];
+  _groupedRows: any[];
   _bodyHeight: any;
   _columns: any[];
   _rowCount: number;

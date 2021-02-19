@@ -1,6 +1,6 @@
 {
   "name": "@yociduo/ngx-datatable",
-  "version": "18.1.2",
+  "version": "18.1.5",
   "description": "ngx-datatable is an Angular table grid component for presenting large and complex data.",
   "peerDependencies": {
     "@angular/cdk": "^10.2.7",
