@@ -15,14 +15,16 @@ import {
   selector: 'datatable-row-wrapper',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div *ngIf="groupHeader && groupHeader.template" class="datatable-group-header" [ngStyle]="getGroupHeaderStyle()">
-      <ng-template
-        *ngIf="groupHeader && groupHeader.template"
-        [ngTemplateOutlet]="groupHeader.template"
-        [ngTemplateOutletContext]="groupContext"
-      >
-      </ng-template>
-    </div>
+    <tr *ngIf="groupHeader && groupHeader.template" class="datatable-group-header" [ngStyle]="getGroupHeaderStyle()">
+      <td>
+        <ng-template
+          *ngIf="groupHeader && groupHeader.template"
+          [ngTemplateOutlet]="groupHeader.template"
+          [ngTemplateOutletContext]="groupContext"
+        >
+        </ng-template>
+      </td>
+    </tr>
     <ng-content *ngIf="(groupHeader && groupHeader.template && expanded) || !groupHeader || !groupHeader.template">
     </ng-content>
     <div

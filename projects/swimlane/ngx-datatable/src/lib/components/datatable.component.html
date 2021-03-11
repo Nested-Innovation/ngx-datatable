@@ -1,4 +1,4 @@
-<div visibilityObserver (visible)="recalculate()">
+<table visibilityObserver (visible)="recalculate()">
   <datatable-header
     *ngIf="headerHeight"
     [sorts]="sorts"
@@ -79,4 +79,4 @@
     (page)="onFooterPage($event)"
   >
   </datatable-footer>
-</div>
+</table>
