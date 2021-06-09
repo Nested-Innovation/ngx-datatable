@@ -191,7 +191,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    * The minimum header height in pixels.
    * Pass a falsey for no header
    */
-  @Input() headerHeight: number = 30;
+  @Input() headerHeight: number | 'auto' = 30;
 
   /**
    * The minimum footer height in pixels.
@@ -879,7 +879,12 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
 
     if (this.scrollbarV) {
       let height = dims.height;
-      if (this.headerHeight) height = height - this.headerHeight;
+      if (this.headerHeight && this.isFixedHeader) {
+        height = height - <number>this.headerHeight;
+      } else if (this.headerComponent) {
+        const headerDims = this.dimensionsHelper.getDimensions(this.headerComponent.element);
+        height = height - headerDims.height;
+      }
       if (this.footerHeight) height = height - this.footerHeight;
       this.bodyHeight = height;
     }
