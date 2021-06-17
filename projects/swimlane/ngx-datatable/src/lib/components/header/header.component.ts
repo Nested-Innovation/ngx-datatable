@@ -7,13 +7,15 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   OnDestroy,
-  ElementRef
+  ElementRef,
+  SkipSelf
 } from '@angular/core';
 import { columnsByPin, columnGroupWidths, columnsByPinArr } from '../../utils/column';
 import { SortType } from '../../types/sort.type';
 import { SelectionType } from '../../types/selection.type';
 import { DataTableColumnDirective } from '../columns/column.directive';
 import { translateXY } from '../../utils/translate';
+import { ScrollbarHelper } from '../../services/scrollbar-helper.service';
 
 @Component({
   selector: 'datatable-header',
@@ -166,7 +168,11 @@ export class DataTableHeaderComponent implements OnDestroy {
 
   private destroyed = false;
 
-  constructor(private cd: ChangeDetectorRef, element: ElementRef) {
+  constructor(
+    @SkipSelf() private scrollbarHelper: ScrollbarHelper,
+    private cd: ChangeDetectorRef,
+    element: ElementRef
+  ) {
     // get ref to elm for measuring
     this.element = element.nativeElement;
   }
@@ -334,9 +340,12 @@ export class DataTableHeaderComponent implements OnDestroy {
     if (group === 'center') {
       translateXY(styles, offsetX * -1, 0);
     } else if (group === 'right') {
-      const totalDiff = widths.total - this.innerWidth;
-      const offset = totalDiff * -1;
-      translateXY(styles, offset, 0);
+      // const totalDiff = widths.total - this.innerWidth;
+      // const offset = totalDiff * -1;
+      // translateXY(styles, offset, 0);
+      if (this._innerWidth <= this._columnGroupWidths.total) {
+        translateXY(styles, -this.scrollbarHelper.width, 0);
+      }
     }
 
     return styles;

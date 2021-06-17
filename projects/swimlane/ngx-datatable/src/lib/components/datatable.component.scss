@@ -132,6 +132,16 @@
     position: relative;
   }
 
+  .datatable-row-left {
+    position: sticky;
+    left: 0;
+  }
+
+  .datatable-row-right {
+    position: sticky;
+    right: 0;
+  }
+
   /**
    * Header Styles
    */
