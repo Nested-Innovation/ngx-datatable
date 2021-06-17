@@ -213,8 +213,8 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
       cls += ' sort-desc';
     }
 
-    if (this.column.first) cls += ' datatable-body-cell-first';
-    if (this.column.last) cls += ' datatable-body-cell-last';
+    if (this.column.first) cls += ' first';
+    if (this.column.last) cls += ' last';
 
     return cls;
   }

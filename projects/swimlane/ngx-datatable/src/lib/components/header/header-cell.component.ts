@@ -121,8 +121,8 @@ export class DataTableHeaderCellComponent {
       }
     }
 
-    if (this.column.first) cls += ' datatable-header-cell-first';
-    if (this.column.last) cls += ' datatable-header-cell-last';
+    if (this.column.first) cls += ' first';
+    if (this.column.last) cls += ' last';
 
     const sortDir = this.sortDir;
     if (sortDir) {
