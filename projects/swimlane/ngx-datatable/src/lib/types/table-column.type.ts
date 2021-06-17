@@ -34,6 +34,20 @@ export interface TableColumn {
   $$valueGetter?: ValueGetter;
 
   /**
+   * First Column
+   *
+   * @memberOf TableColumn
+   */
+  first?: boolean;
+
+  /**
+   * Last Column
+   *
+   * @memberOf TableColumn
+   */
+  last?: boolean;
+
+  /**
    * Determines if column is checkbox
    *
    * @memberOf TableColumn

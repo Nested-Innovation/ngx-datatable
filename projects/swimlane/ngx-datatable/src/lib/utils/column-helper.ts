@@ -15,7 +15,7 @@ export function setColumnDefaults(columns: TableColumn[]) {
   // isTreeColumn as true we take only the first one
   let treeColumnFound: boolean = false;
 
-  for (const column of columns) {
+  for (const [index, column] of columns.entries()) {
     if (!column.$$id) {
       column.$$id = id();
     }
@@ -72,6 +72,9 @@ export function setColumnDefaults(columns: TableColumn[]) {
         column.isTreeColumn = false;
       }
     }
+
+    column.first = index === 0;
+    column.last = index + 1 === columns.length;
   }
 }
 
